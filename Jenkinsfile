@@ -1,15 +1,5 @@
 pipeline {
     agent any
-    environment {
-        JAVA_HOME = 'C:\\Program Files\\Java\\jdk-21'
-        PATH = "${env.PATH};${JAVA_HOME}\\bin"
-    }
-    stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'main', url: 'https://github.com/Khadijaessa/jenkins-hello-world.git'
-            }
-        }
         stage('Build') {
             steps {
                 script {
