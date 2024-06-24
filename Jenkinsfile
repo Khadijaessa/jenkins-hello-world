@@ -1,9 +1,9 @@
 pipeline {
     agent any
     environment {
-        JAVA_HOME = 'C:\\Program Files\\Java\\jdk1.8.0_202\\bin\\java.exe'
-        PYTHON_HOME = 'C:\\Program Files\\Python312\\python.exe'
-        PATH = "${env.PATH};${JAVA_HOME};${PYTHON_HOME}"
+        JAVA_HOME = 'C:\\Program Files\\Java\\jdk1.8.0_202'
+        PYTHON_HOME = 'C:\\Program Files\\Python312'
+        PATH = "${env.PATH};${JAVA_HOME}\\bin;${PYTHON_HOME}"
     }
     stages {
         stage('Checkout') {
@@ -20,10 +20,10 @@ pipeline {
                         sh 'java HelloWorld'
                         sh 'python3 hello.py'
                     } else {
-                        bat 'python hello.py'
                         bat 'echo "Running on Windows"'
                         bat 'javac HelloWorld.java'
                         bat 'java HelloWorld'
+                        bat 'python hello.py'
                     }
                 }
             }
