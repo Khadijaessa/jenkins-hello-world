@@ -1,14 +1,32 @@
-      pipeline {
-          agent any
-          stages {
-              stage('Build') {
-                  steps {
-                      script {
-                          // Choisissez la commande en fonction de votre script
-                          bat 'python hello.py' // Pour Python
-                          bat 'javac HelloWorld.java && java HelloWorld' // Pour Java
-                      }
-                  }
-              }
-          }
-      }
+pipeline {
+    agent any
+    environment {
+        JAVA_HOME = 'C:\\Program Files\\Java\\jdk-21'
+        PATH = "${env.PATH};${JAVA_HOME}\\bin"
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Khadijaessa/jenkins-hello-world.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                script {
+                    if (isUnix()) {
+                        sh 'echo "Running on Unix"'
+                        sh 'javac HelloWorld.java'
+                        sh 'java HelloWorld'
+                        sh 'python3 hello.py'
+                    } else {
+                        bat 'echo "Running on Windows"'
+                        bat 'javac HelloWorld.java'
+                        bat 'java HelloWorld'
+                        bat 'python hello.py'
+                    }
+                }
+            }
+        }
+    }
+}
+
