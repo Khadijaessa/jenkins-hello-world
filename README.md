@@ -10,5 +10,5 @@ Then go the destination folder where your ngrok zip file present .
 Extract the zip file.
 
 Open Cmd and type ngrok.exe http 8080 and hit enter.
- cocher la case
+ cocher la case 'GitHub hook trigger for GITScm polling'
 
